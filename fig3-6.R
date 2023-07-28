@@ -5,7 +5,8 @@ require("parallel"); require("foreach"); require("doParallel"); require("doRNG")
 ## settings
 ## ==========
 set.seed(123)
-cmode = c("computation", "plot")
+# cmode = c("computation", "plot")
+cmode = "plot"
 N.Cores = detectCores() ## CPU cores for parallel computation
 
 ## ==========

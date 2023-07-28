@@ -13,5 +13,3 @@ This repository provides R Source codes to reproduce numerical experiments in th
     journal   = {arXiv preprint arXiv:2306.16593}
 }
 ```
-
-Please specify the destination of the output, in "dir" variable in each script (default: "~"). 

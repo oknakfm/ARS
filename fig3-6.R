@@ -232,8 +232,8 @@ for(setting in 1:2){
       write(x=ct, file=filename)
       
       names = c("Observations (for train.)", "True (for test)", "AR", "ARS (Initial)", "ARS (Trained)")
-      colors = c("grey", "black", "red", "yellow", "blue")
-      pchs = c(4, 4, 1, 1, 1)
+      colors = c("grey", "black", "red", "orange", "blue")
+      pchs = c(4, 4, 2, 1, 1)
       
       filename = paste0(OUT,"/setting",setting,"_sd",sd_id,"_exp1.RData")
       load(file=filename)
@@ -243,12 +243,13 @@ for(setting in 1:2){
         pred_I = prediction(.ARS=.ARSI, n=n_pred, step=1)
         
         pdf(file=paste0(OUT,"/setting",setting,"_sd",sd_id,".pdf"), width=7, height=6)
-        par(mar = c(2, 2, 2, 1))
-        par(oma = c(2, 2, 2, 1))
+        # par(mar = c(2, 2, 2, 1))
+        # par(oma = c(2, 2, 2, 1))
+        par(bg="white")
         yl = range(obs, pred_0F[,1],pred_1F1[,1], pred_I[,1])
         xmax = (n+n_pred)
         xl = c(-18,xmax)
-        plot(1:n, obs, xlim=xl, ylim=yl, xlab="k", ylab="z1", type="b", 
+        plot(1:n, obs, xlim=xl, ylim=yl, xlab="j", ylab="z1(j)", type="b", 
              col=colors[1], pch=pchs[1], main=paste0("AR/ARS computed in Instance 1 (n=",n,")"))
         par(new=T)  
         plot(n + (1:n_pred), det_seq$Y[1:n_pred,1], xlim=xl, ylim=yl, xlab=" ", ylab=" ", type="b", col=colors[2], pch=pchs[2],
@@ -274,12 +275,13 @@ for(setting in 1:2){
         pred_I = prediction(.ARS=.ARSI, n=n_pred, step=1)
         
         pdf(file=paste0(OUT,"/setting",setting,"_sd",sd_id,".pdf"), width=6, height=6)
+        par(bg="white")
         
         xl = range(obs[,1], det_seq$Y[,1], pred_0F[,1],pred_1F1[,1], pred_I[,1])
         yl = range(obs[,2], det_seq$Y[,2], pred_0F[,2],pred_1F1[,2], pred_I[,2])
         
         plot(obs[,1], obs[,2], 
-             xlim=xl, ylim=yl, xlab="z1", ylab="z2", type="b", 
+             xlim=xl, ylim=yl, xlab="z1(j)", ylab="z2(j)", type="b", 
              col=colors[1], pch=pchs[1], main=paste0("AR/ARS computed in Instance 1 (n=",n,")"))
         
         par(new=T)
